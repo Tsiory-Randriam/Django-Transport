@@ -1,0 +1,10 @@
+FROM tomcat:10-jdk17-openjdk-slim
+
+# Supprime l'application par défaut de Tomcat pour mettre la vôtre à la racine
+RUN rm -rf /usr/local/tomcat/webapps/ROOT
+
+# Copie votre fichier .war dans Tomcat et le renomme ROOT.war (votre site sera accessible sur la page d'accueil)
+COPY Voyage_Agences.war /usr/local/tomcat/webapps/ROOT.war
+
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
